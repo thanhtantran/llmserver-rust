@@ -45,49 +45,7 @@ cargo build --release
 
 ## Install on docker
 
-## Install on cluster
-
-You need to find out which sbc in your cluster is cpu rk3588
-
-```bash
-yourname@hostname$ microk8s kubectl get nodes
-NAME                STATUS   ROLES    AGE     VERSION
-kautism-desktop     Ready    <none>   16d     v1.32.2
-kautism-orangepi5   Ready    <none>   6d16h   v1.32.2
-```
-
-Label your node
-```bash
-microk8s kubectl label nodes <node-name> cpu=rk3588
-```
-
-Apply your yaml, if you don't know how to write it, you can copy `k8s/*` as template
-
-```bash
-yourname@hostname$ microk8s kubectl apply -f k8s/deepseek-1.5b.yaml
-persistentvolumeclaim/llmserver-pvc created
-deployment.apps/llmserver created
-service/llmserver-service created
-```
-
-**Note**: My yaml use rock-ceph as backend pvc provider. You can change it you liked. Or you can follow [this guide](https://microk8s.io/docs/how-to-ceph) to build your own cluster storage system
-**Note**: [error maybe happened](https://github.com/canonical/microk8s/issues/4314#issuecomment-1873823537)
-
-Now you can see pod in your default namespace(if you do not like default namespace, change it by yourself).
-
-```bash
-sudo microk8s kubectl get all
-NAME                                    READY   STATUS    RESTARTS      AGE
-pod/llmserver-7bb666876d-9nzn6          1/1     Running   0             37s
-
-
-NAME                        TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
-service/llmserver-service   NodePort    10.152.183.39    <none>        80:31106/TCP   12m
-```
-
-Using any ip of your cluster node with node port to access your llm api
-
-http://*<*your node ip not cluster ip*>*:31106/swagger-ui/
+Download and deploy image [here](https://hub.docker.com/r/thanhtantran/llmserver-rust
 
 ## Support module
 
