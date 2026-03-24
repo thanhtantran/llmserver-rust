@@ -15,7 +15,7 @@ This project provides a Rust implementation of an API server that mimics the fun
 ## Installation
 
 You must need rknpu driver above 0.9.7.
-To install and run `llmserver-rs`, follow these steps:
+To install and run `llmserver-rust`, follow these steps:
 
 **Install dep packages:**
 ```bash
@@ -45,7 +45,7 @@ cargo build --release
 
 ## Install on docker
 
-Download and deploy image [here](https://hub.docker.com/r/thanhtantran/llmserver-rust
+Download and deploy image [here](https://hub.docker.com/r/thanhtantran/llmserver-rust)
 
 ## Support module
 
